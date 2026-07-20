@@ -14,6 +14,7 @@ __Don't forget to use `docker pull r15ch13/arkcluster` to get the latest version
  - Mods handling (via Ark Server Tools)
  - `docker stop` is a clean stop
  - Auto upgrading of arkmanager
+ - Support for beta branches
 
 ## Usage
 Fast & Easy cluster setup via docker compose:
@@ -39,6 +40,7 @@ services:
       MAX_BACKUP_SIZE: 500
       SERVERMAP: "TheIsland"
       SESSION_NAME: "ARK Cluster TheIsland"
+      BETA: "preaquatica"
       MAX_PLAYERS: 15
       RCON_ENABLE: "True"
       QUERY_PORT: 15000
@@ -77,6 +79,7 @@ services:
       MAX_BACKUP_SIZE: 500
       SERVERMAP: "Valguero_P"
       SESSION_NAME: "ARK Cluster Valguero"
+      BETA: "preaquatica"
       MAX_PLAYERS: 15
       RCON_ENABLE: "False"
       QUERY_PORT: 15010
