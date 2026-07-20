@@ -40,7 +40,7 @@ function stop {
 ARK_BETA_ARGS=""
 
 if [ -n "${BETA}" ]; then
-    ARK_BETA_ARGS="--beta=${BETA}"
+    ARK_BETA_ARGS="--beta=${BETA} --validate"
     log "Using Steam beta branch: ${BETA}"
 fi
 
