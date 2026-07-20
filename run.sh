@@ -36,6 +36,14 @@ function stop {
     exit
 }
 
+# Optional beta branch (e.g. BETA=preaquatica)
+ARK_BETA_ARGS=""
+
+if [ -n "${BETA}" ]; then
+    ARK_BETA_ARGS="--beta=${BETA}"
+    log "Using Steam beta branch: ${BETA}"
+fi
+
 # Change the USER_ID if needed
 if [ ! "$(id -u steam)" -eq "$USER_ID" ]; then
     log "Changing steam uid to $USER_ID."
@@ -60,7 +68,7 @@ fi
 
 if [ ! -f /etc/cron.d/arkupdate ]; then
     log "Adding update cronjob (${CRON_AUTO_UPDATE}) ..."
-    echo "$CRON_AUTO_UPDATE steam bash -l -c 'arkmanager update --dots --update-mods --warn --ifempty --saveworld --backup >> /ark/log/ark-update.log 2>&1'" > /etc/cron.d/arkupdate
+    echo "$CRON_AUTO_UPDATE steam bash -l -c 'arkmanager update --dots ${ARK_BETA_ARGS} --update-mods --warn --ifempty --saveworld --backup >> /ark/log/ark-update.log 2>&1'" > /etc/cron.d/arkupdate
 fi
 
 if [ ! -f /etc/cron.d/arkbackup ]; then
@@ -90,7 +98,7 @@ if [ ! -d /ark/server ] || [ ! -f /ark/server/version.txt ]; then
     touch /ark/server/ShooterGame/Binaries/Linux/ShooterGameServer
     chown -R steam:steam /ark/server
     touch /ark/server/.installing-ark
-    arkmanager install --dots
+    arkmanager install --dots ${ARK_BETA_ARGS}
     rm -f /ark/server/.installing-ark
 else
     if [ "${BACKUPONSTART}" -eq 1 ] && [ "$(ls -A /ark/server/ShooterGame/Saved/SavedArks/)" ]; then
