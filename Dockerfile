@@ -79,6 +79,7 @@ ENV CRON_AUTO_UPDATE="0 */3 * * *" \
     MAX_BACKUP_SIZE=500 \
     SERVERMAP="TheIsland" \
     SESSION_NAME="ARK Docker" \
+    BETA="preaquatica" \
     MAX_PLAYERS=15 \
     RCON_ENABLE="True" \
     QUERY_PORT=15000 \
